@@ -10,6 +10,12 @@
 </head>
 
 <body>
+    @if (auth()->user())
+        ada yang login
+    @else
+        udah keluar
+    @endif
+    {{-- {{ auth()->user() }} --}}
     <h1 class="text-3xl text-red-700 text-center font-bold underline">
         Hello world!
     </h1>

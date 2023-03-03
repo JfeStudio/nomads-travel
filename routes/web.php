@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// auth
+
 Route::get("/", function () {
     return view("welcome");
 });
 
-Route::get("/dashboard", function () {
-    return view("dashboard.index");
+Route::middleware(["auth", EnsureTokenIsValid::class])->group(function () {
+    Route::get("/dashboard", function () {
+        return view("dashboard.index");
+    });
 });
 
 Route::get("/pages", function () {
