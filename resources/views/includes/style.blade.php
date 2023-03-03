@@ -1,10 +1,9 @@
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
-
- <!-- CSS Libraries -->
-
- <!-- Template CSS -->
- <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}" />
- <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nomads</title>
+    <!-- boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <!-- xzoom -->
+    <link href="{{ asset('frontend') }}/assets/css/xzoom.min.css" rel="stylesheet" />
+    @vite('resources/css/app.css')
+    {{-- <link href="{{ asset('frontend') }}/assets/css/style.css" rel="stylesheet" /> --}}

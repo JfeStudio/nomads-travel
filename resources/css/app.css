@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.card-travel:hover img {
+  scale: 1.3;
+}
+
+.bg-tourism {
+  @apply after:absolute after:top-0 after:right-0 after:left-0
+   after:-z-20 after:h-[30rem] after:bg-dark-scy after:text-white after:content-['']
+    after:md:h-[33.5rem] after:md:pt-36;
+}
+
+.main-content {
+  @apply after:absolute after:top-0 after:right-0 after:left-0
+   after:-z-20 after:h-[30rem] after:bg-blue-500/10 after:text-white after:content-['']
+    after:md:h-[20.5rem];
+}
+
+.hero-pattern {
+  background-image: url("../../public/frontend/assets/images/header-background.jpg") !important;
+}
+
+.hero-pattern .navigation {
+    @apply lg:w-[85%];
+}

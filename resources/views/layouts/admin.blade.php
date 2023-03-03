@@ -2,12 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport" />
-    <title>Blank Page &mdash; Nomads</title>
-
     <!-- General CSS Files -->
-    @include('includes.style')
+    @include('includes.admin.style')
 </head>
 
 <body>
@@ -15,11 +11,11 @@
         <div class="main-wrapper">
             <!-- Navigation -->
             <div class="navbar-bg"></div>
-            @include('includes.navigation')
+            @include('includes.admin.navigation')
 
             <!-- Sidebar -->
             <div class="main-sidebar sidebar-style-2">
-                @include('includes.sidebar')
+                @include('includes.admin.sidebar')
             </div>
 
             <!-- Main Content -->
@@ -29,13 +25,13 @@
 
             <!-- Footer -->
             <footer class="main-footer">
-                @include('includes.footer')
+                @include('includes.admin.footer')
             </footer>
         </div>
     </div>
 
     <!-- General JS Scripts -->
-    @include('includes.script')
+    @include('includes.admin.script')
 </body>
 
 </html>
