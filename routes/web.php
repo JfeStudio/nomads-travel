@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TravelPackageController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +24,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(["auth", EnsureTokenIsValid::class])->group(function () {
     Route::get("/dashboard", function () {
         return view("dashboard.index");
-    });
+    })->name("dashboard");
 });
+
+Route::resource("travel-packages", TravelPackageController::class);
 
 Route::get("/", function () {
     return view("pages.index");

@@ -7,7 +7,7 @@
          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
 
      <!-- CSS Libraries -->
-
+     @stack('custom-link-summer-note')
      <!-- Template CSS -->
      <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}" />
      <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}" />
