@@ -19,6 +19,6 @@ class EnsureTokenIsValid
         if (Auth::user() && Auth::user()->roles == "admin") {
             return $next($request);
         }
-        return redirect("/pages");
+        return redirect("/");
     }
 }

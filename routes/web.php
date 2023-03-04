@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 // auth
 
-Route::get("/", function () {
-    return view("welcome");
-});
+// Route::get("/", function () {
+//     return view("welcome");
+// });
 
 Route::middleware(["auth", EnsureTokenIsValid::class])->group(function () {
     Route::get("/dashboard", function () {
@@ -26,7 +26,7 @@ Route::middleware(["auth", EnsureTokenIsValid::class])->group(function () {
     });
 });
 
-Route::get("/pages", function () {
+Route::get("/", function () {
     return view("pages.index");
 })->name("pages.index");
 
