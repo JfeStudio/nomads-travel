@@ -14,23 +14,34 @@
                     <form action="{{ route('login') }}" method="post" class="space-y-4 md:space-y-6" action="#">
                         @csrf
                         <div>
-                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Your
+                            <label for="email"
+                                class="@error('email') is-invalid-field @enderror block mb-2 text-sm font-medium text-gray-900 ">Your
                                 email</label>
                             <input type="email" name="email" id="email"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
+                                class="@error('email') is-invalid-input @enderror bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                                 placeholder="nomads@company.com">
+                            @error('email')
+                                <div class="text-red-500 text-sm mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div>
-                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
+                            <label for="password"
+                                class="@error('password') is-invalid-field @enderror block mb-2 text-sm font-medium text-gray-900 ">Password</label>
                             <input type="password" name="password" id="password" placeholder="••••••••"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 ">
+                                class="@error('password') is-invalid-input @enderror bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 ">
+                            @error('password')
+                                <div class="text-red-500 text-sm mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="flex items-center justify-between">
                             <div class="flex items-start">
                                 <div class="flex items-center h-5">
                                     <input id="remember" aria-describedby="remember" type="checkbox"
-                                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
-                                        required="">
+                                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300">
                                 </div>
                                 <div class="ml-3 text-sm">
                                     <label for="remember" class="text-gray-500 ">Remember me</label>

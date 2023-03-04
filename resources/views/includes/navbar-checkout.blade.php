@@ -1,4 +1,4 @@
-<header class="mx-auto mb-2.5 lg:container">
+<header class="lg:mx-auto mb-2.5 lg:container">
     <div class="navigation m-auto w-full">
         <nav class="relative flex items-center justify-center p-3.5 lg:bg-white">
             <a class="border-r border-slate-300 px-5 text-3xl font-bold leading-none" href="{{ route('pages.index') }}">

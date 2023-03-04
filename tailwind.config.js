@@ -33,8 +33,5 @@ module.exports = {
             //   },
         },
     },
-    plugins: [
-        require("prettier-plugin-tailwindcss"),
-        require("tw-elements/dist/plugin"),
-    ],
+    plugins: [require("prettier-plugin-tailwindcss")],
 };
