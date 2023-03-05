@@ -31,69 +31,9 @@
              <a class="nav-link" href="{{ route('travel-packages.index') }}"><i class="far fa-square"></i> <span>Paket
                      Travel</span></a>
          </li>
-         <li class="nav-item dropdown">
-             <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i>
-                 <span>Bootstrap</span></a>
-             <ul class="dropdown-menu">
-                 <li>
-                     <a class="nav-link" href="bootstrap-alert.html">Alert</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-badge.html">Badge</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-breadcrumb.html">Breadcrumb</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-buttons.html">Buttons</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-card.html">Card</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-carousel.html">Carousel</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-collapse.html">Collapse</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-dropdown.html">Dropdown</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-form.html">Form</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-list-group.html">List Group</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-media-object.html">Media Object</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-modal.html">Modal</a>
-                 </li>
-                 <li><a class="nav-link" href="bootstrap-nav.html">Nav</a></li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-navbar.html">Navbar</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-pagination.html">Pagination</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-popover.html">Popover</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-progress.html">Progress</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-table.html">Table</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-tooltip.html">Tooltip</a>
-                 </li>
-                 <li>
-                     <a class="nav-link" href="bootstrap-typography.html">Typography</a>
-                 </li>
-             </ul>
+         <li class='@if (Request::url() == url('/galleries')) active @endif'>
+             <a class="nav-link" href="{{ route('galleries.index') }}"><i class="fas fa-th"></i>
+                 <span>Gallery</span></a>
          </li>
          <li class="menu-header">Stisla</li>
          <li class="nav-item dropdown">
