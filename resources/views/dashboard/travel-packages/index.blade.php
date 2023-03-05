@@ -59,25 +59,34 @@
                                             <th>Price</th>
                                             <th>Type</th>
                                         </tr>
+                                        <?php $i = 1; ?>
                                         @forelse ($travels as $item)
                                             <tr>
-                                                <td>{{ $item->id }}</td>
+                                                <td>{{ $i }}</td>
                                                 <td>{{ $item->title }}
                                                     <div class="table-links">
                                                         <a href="#">View</a>
                                                         <div class="bullet"></div>
-                                                        <a href="#">Edit</a>
+                                                        <a href="{{ route('travel-packages.edit', $item->id) }}">Edit</a>
                                                         <div class="bullet"></div>
-                                                        <a href="#" class="text-danger">Trash</a>
+                                                        <a href="#"
+                                                            onclick="event.preventDefault(); document.getElementById('delete-form').submit()"
+                                                            class="text-danger">Trash</a>
+                                                        <form action="{{ route('travel-packages.destroy', $item->id) }}"
+                                                            method="post" id="delete-form">
+                                                            @csrf
+                                                            @method('delete')
+                                                        </form>
                                                     </div>
                                                 </td>
                                                 <td>{{ $item->location }}</td>
-                                                <td>{{ $item->about }}</td>
+                                                <td>{!! $item->about !!}</td>
                                                 <td>{{ $item->departure_date }}</td>
                                                 <td>{{ $item->type }}</td>
                                                 <td>{{ $item->price }}</td>
                                                 <td>{{ $item->type }}</td>
                                             </tr>
+                                            <?php $i++; ?>
                                         @empty
                                             <tr>
                                                 <td colspan="7" class="text-center">
@@ -85,6 +94,7 @@
                                                 </td>
                                             </tr>
                                         @endforelse
+
                                     </table>
                                 </div>
                                 <div class="float-right">

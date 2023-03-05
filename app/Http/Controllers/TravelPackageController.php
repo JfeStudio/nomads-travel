@@ -50,7 +50,7 @@ class TravelPackageController extends Controller
      */
     public function edit(TravelPackage $travelPackage)
     {
-        //
+        return view("dashboard.travel-packages.edit", compact("travelPackage"));
     }
 
     /**
@@ -58,7 +58,10 @@ class TravelPackageController extends Controller
      */
     public function update(Request $request, TravelPackage $travelPackage)
     {
-        //
+        $data = $request->all();
+        $data["slug"] = Str::slug($request->title);
+        $travelPackage->update($data);
+        return redirect()->route("travel-packages.index");
     }
 
     /**
@@ -66,6 +69,7 @@ class TravelPackageController extends Controller
      */
     public function destroy(TravelPackage $travelPackage)
     {
-        //
+        $travelPackage->delete();
+        return back();
     }
 }
