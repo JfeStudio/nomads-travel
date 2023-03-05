@@ -184,6 +184,7 @@ return [
         /*
          * Package Service Providers...
          */
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         FortifyServiceProvider::class,
         /*
          * Application Service Providers...

@@ -31,6 +31,7 @@
     </div>
 
     <!-- General JS Scripts -->
+    @include('sweetalert::alert')
     @include('includes.admin.script')
 </body>
 

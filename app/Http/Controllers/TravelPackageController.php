@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreRequest;
 use App\Models\TravelPackage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class TravelPackageController extends Controller
 {
@@ -30,11 +33,31 @@ class TravelPackageController extends Controller
      */
     public function store(Request $request)
     {
+        $validation = Validator::make($request->all(), [
+            "title" => "required|string",
+            "location" => "required|string",
+            "about" => "required|string",
+            "featured_event" => "required|string",
+            "language" => "required|string",
+            "foods" => "required|string",
+            "departure_date" => "required|date",
+            "duration" => "required|string",
+            "type" => "required|string",
+            "price" => "required|integer",
+        ]);
+
+        if ($validation->fails()) {
+            return back()
+                ->with("toast_error", $validation->messages()->all()[0])
+                ->withInput();
+        }
         $data = $request->all();
         $data["slug"] = Str::slug($request->title);
         // dd($data);
         TravelPackage::create($data);
-        return redirect()->route("travel-packages.index");
+        return redirect()
+            ->route("travel-packages.index")
+            ->with("toast_success", "Travel Package Created");
     }
 
     /**
@@ -58,10 +81,29 @@ class TravelPackageController extends Controller
      */
     public function update(Request $request, TravelPackage $travelPackage)
     {
+        $validation = Validator::make($request->all(), [
+            "title" => "required|string",
+            "location" => "required|string",
+            "about" => "required|string",
+            "featured_event" => "required|string",
+            "language" => "required|string",
+            "foods" => "required|string",
+            "departure_date" => "required|date",
+            "duration" => "required|string",
+            "type" => "required|string",
+            "price" => "required|integer",
+        ]);
+        if ($validation->fails()) {
+            return back()
+                ->with("toast_error", $validation->messages()->all()[0])
+                ->withInput();
+        }
         $data = $request->all();
         $data["slug"] = Str::slug($request->title);
         $travelPackage->update($data);
-        return redirect()->route("travel-packages.index");
+        return redirect()
+            ->route("travel-packages.index")
+            ->with("toast_success", "Travel Package Updated");
     }
 
     /**
@@ -70,6 +112,7 @@ class TravelPackageController extends Controller
     public function destroy(TravelPackage $travelPackage)
     {
         $travelPackage->delete();
+        Alert::success("Success", "Travel Package Deleted");
         return back();
     }
 }

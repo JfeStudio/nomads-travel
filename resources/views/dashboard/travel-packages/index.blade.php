@@ -76,6 +76,7 @@
                                                             method="post" id="delete-form">
                                                             @csrf
                                                             @method('delete')
+
                                                         </form>
                                                     </div>
                                                 </td>
