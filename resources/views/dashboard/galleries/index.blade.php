@@ -8,22 +8,22 @@
             </div>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                <div class="breadcrumb-item">Travel</div>
+                <div class="breadcrumb-item">Galleries</div>
             </div>
         </div>
 
         <!-- Content -->
         <section class="section">
             <div class="section-body">
-                <h2 class="section-title">Travel</h2>
+                <h2 class="section-title">Galleries</h2>
                 <p class="section-lead">
-                    You can manage all travel, such as editing, deleting and more.
+                    You can manage all galleries, such as editing, deleting and more.
                 </p>
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All Travel</h4>
+                                <h4>All Galleries</h4>
                             </div>
                             <div class="card-body">
                                 <div class="float-left">
@@ -75,13 +75,17 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <a href="#">
+                                                    @if ($item->image)
                                                         <img style="object-fit: cover" alt="image"
                                                             src="{{ Storage::url($item->image) }}" class="rounded-circle"
                                                             width="60" height="60" data-toggle="title"
                                                             title="">
-                                                        {{-- <div class="d-inline-block ml-1">Rizal Fakhri</div> --}}
-                                                    </a>
+                                                    @else
+                                                        <img style="object-fit: cover" alt="image"
+                                                            src="{{ asset('backend/assets/img/avatar/avatar-1.png') }}"
+                                                            class="rounded-circle" width="45" height="45"
+                                                            data-toggle="title" title="">
+                                                    @endif
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>

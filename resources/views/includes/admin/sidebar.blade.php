@@ -1,6 +1,6 @@
  <aside id="sidebar-wrapper">
      <div class="sidebar-brand">
-         <a href="index.html">Stisla</a>
+         <a href="index.html">Nomads</a>
      </div>
      <div class="sidebar-brand sidebar-brand-sm">
          <a href="index.html">St</a>
@@ -30,6 +30,10 @@
          <li class='@if (Request::url() == url('/travel-packages')) active @endif'>
              <a class="nav-link" href="{{ route('travel-packages.index') }}"><i class="far fa-square"></i> <span>Paket
                      Travel</span></a>
+         </li>
+         <li class='@if (Request::url() == url('/transactions')) active @endif'>
+             <a class="nav-link" href="{{ route('transactions.index') }}"><i class="far fa-file-alt"></i>
+                 <span>Transactions</span></a>
          </li>
          <li class='@if (Request::url() == url('/galleries')) active @endif'>
              <a class="nav-link" href="{{ route('galleries.index') }}"><i class="fas fa-th"></i>

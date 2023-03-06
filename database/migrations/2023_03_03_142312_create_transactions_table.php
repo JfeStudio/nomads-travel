@@ -13,13 +13,10 @@ return new class extends Migration {
         Schema::create("transactions", function (Blueprint $table) {
             $table->id();
             $table->foreignId("travel_packages_id")->constrained();
-            $table
-                ->foreignId("users_id")
-                ->nullable()
-                ->constrained();
+            $table->foreignId("users_id")->constrained();
             $table->integer("additional_visa");
             $table->integer("transaction_total");
-            $table->integer("transaction_status");
+            $table->string("transaction_status");
             // IN_CART, PENDING, SUCCESS, CANCEL, FAILED
             $table->softDeletes();
             $table->timestamps();

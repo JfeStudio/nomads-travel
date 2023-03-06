@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TravelPackageController;
 use App\Http\Middleware\EnsureTokenIsValid;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,7 @@ Route::middleware(["auth", EnsureTokenIsValid::class])->group(function () {
 
 Route::resource("travel-packages", TravelPackageController::class);
 Route::resource("galleries", GalleryController::class);
+Route::resource("transactions", TransactionController::class);
 
 Route::get("/", function () {
     return view("pages.index");

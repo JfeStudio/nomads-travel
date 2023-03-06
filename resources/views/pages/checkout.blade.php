@@ -63,7 +63,7 @@
                                             <th scope="col" class="px-6 py-3">Picture</th>
                                             <th scope="col" class="px-6 py-3">Name</th>
                                             <th scope="col" class="px-6 py-3">Nationality</th>
-                                            <th scope="col" class="px-6 py-3">Visi</th>
+                                            <th scope="col" class="px-6 py-3">Visa</th>
                                             <th scope="col" class="px-6 py-3">Passport</th>
                                             <th scope="col" class="px-6 py-3"></th>
                                         </tr>

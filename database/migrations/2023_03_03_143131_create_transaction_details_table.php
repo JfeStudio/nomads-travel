@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create("transaction_details", function (Blueprint $table) {
             $table->id();
             $table->foreignId("transactions_id")->constrained();
-            $table->string("username");
+            $table->string("name");
             $table->string("nationality");
             $table->boolean("is_visa");
             $table->date("doe_passport");

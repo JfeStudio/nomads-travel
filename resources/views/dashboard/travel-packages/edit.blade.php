@@ -6,7 +6,7 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('travel-packages.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
             <h1>Update Travel Packages</h1>
             <div class="section-header-breadcrumb">
@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Write Your Travel</h4>
+                            <h4>Update Your Travel</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ route('travel-packages.update', $travelPackage->id) }}" method="post">

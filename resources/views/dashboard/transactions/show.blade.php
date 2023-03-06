@@ -2,28 +2,26 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Paket Travel</h1>
-            <div class="section-header-button">
-                <a href="{{ route('travel-packages.create') }}" class="btn btn-primary">Add New</a>
-            </div>
+            <h1>Transaction Details</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('dashboard') }}">Dashboard</a></div>
-                <div class="breadcrumb-item">Travels</div>
+                <div class="breadcrumb-item active"><a href="{{ route('transactions.index') }}">Transactions</a></div>
+                <div class="breadcrumb-item">Transaction Details</div>
             </div>
         </div>
 
         <!-- Content -->
         <section class="section">
             <div class="section-body">
-                <h2 class="section-title">Travels</h2>
+                <h2 class="section-title">Transaction</h2>
                 <p class="section-lead">
-                    You can manage all travels, such as editing, deleting and more.
+                    You can manage all transaction, such as editing, deleting and more.
                 </p>
                 <div class="row mt-4">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>All Travels</h4>
+                                <h4>All Transaction</h4>
                             </div>
                             <div class="card-body">
                                 <div class="float-left">
@@ -44,58 +42,71 @@
                                         </div>
                                     </form>
                                 </div>
-
                                 <div class="clearfix mb-3"></div>
-
                                 <div class="table-responsive">
                                     <table class="table table-striped">
                                         <tr>
                                             <th>ID</th>
                                             <th>Title</th>
-                                            <th>Location</th>
-                                            <th>About</th>
-                                            <th>Departure Date</th>
-                                            <th>Type</th>
-                                            <th>Price</th>
-                                            <th>Type</th>
+                                            <th>Seller</th>
+                                            <th>Additional Visa</th>
+                                            <th>Total Transaction</th>
+                                            <th>Status Transaction</th>
                                         </tr>
                                         <?php $i = 1; ?>
-                                        @forelse ($travels as $item)
+                                        <tr>
+                                            <td>{{ $i }}</td>
+                                            <td>{{ $transaction->travel_package->title }}
+                                            </td>
+                                            <td>
+                                                {{ $transaction->user->name }}
+                                            </td>
+                                            <td>
+                                                {{ $transaction->additional_visa }}
+                                            </td>
+                                            <td>
+                                                {{ $transaction->transaction_total }}
+                                            </td>
+                                            <td>
+                                                {{ $transaction->transaction_status }}
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="card-header">
+                                    <h4>Pembelian</h4>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nama</th>
+                                            <th>Nationality</th>
+                                            <th>Visa</th>
+                                            <th>DOE Passport</th>
+                                        </tr>
+                                        @forelse ($transaction->details as $item)
                                             <tr>
-                                                <td>{{ $i }}</td>
-                                                <td>{{ $item->title }}
-                                                    <div class="table-links">
-                                                        <a href="#">View</a>
-                                                        <div class="bullet"></div>
-                                                        <a href="{{ route('travel-packages.edit', $item->id) }}">Edit</a>
-                                                        <div class="bullet"></div>
-                                                        <a href="#"
-                                                            onclick="event.preventDefault(); document.getElementById('delete-form').submit()"
-                                                            class="text-danger">Trash</a>
-                                                        <form action="{{ route('travel-packages.destroy', $item->id) }}"
-                                                            method="post" id="delete-form">
-                                                            @csrf
-                                                            @method('delete')
-
-                                                        </form>
-                                                    </div>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->name }}
                                                 </td>
-                                                <td>{{ $item->location }}</td>
-                                                <td>{!! $item->about !!}</td>
-                                                <td>{{ $item->departure_date }}</td>
-                                                <td>{{ $item->type }}</td>
-                                                <td>{{ $item->price }}</td>
-                                                <td>{{ $item->type }}</td>
+                                                <td>
+                                                    {{ $item->nationality }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->is_visa ? '30 Days' : 'N/A' }}
+                                                </td>
+                                                <td>
+                                                    {{ $item->doe_passport }}
+                                                </td>
                                             </tr>
-                                            <?php $i++; ?>
                                         @empty
                                             <tr>
-                                                <td colspan="7" class="text-center">
+                                                <td colspan="6" class="text-center">
                                                     Data Kosong
                                                 </td>
                                             </tr>
                                         @endforelse
-
                                     </table>
                                 </div>
                                 <div class="float-right">
