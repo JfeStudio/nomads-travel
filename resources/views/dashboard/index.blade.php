@@ -12,10 +12,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Total Admin</h4>
+                            <h4>Paket Travel</h4>
                         </div>
                         <div class="card-body">
-                            10
+                            {{ $travel_packages }}
                         </div>
                     </div>
                 </div>
@@ -27,10 +27,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>News</h4>
+                            <h4>Transactions</h4>
                         </div>
                         <div class="card-body">
-                            42
+                            {{ $transactions }}
                         </div>
                     </div>
                 </div>
@@ -42,10 +42,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Reports</h4>
+                            <h4>Pending</h4>
                         </div>
                         <div class="card-body">
-                            1,201
+                            {{ $pending_transactions }}
                         </div>
                     </div>
                 </div>
@@ -57,10 +57,10 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Online Users</h4>
+                            <h4>Success</h4>
                         </div>
                         <div class="card-body">
-                            47
+                            {{ $success_transactions }}
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TravelPackageController;
 use App\Http\Middleware\EnsureTokenIsValid;
+use App\Models\Transaction;
+use App\Models\TravelPackage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,14 +27,13 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::middleware(["auth", EnsureTokenIsValid::class])->group(function () {
-    Route::get("/dashboard", function () {
-        return view("dashboard.index");
-    })->name("dashboard");
+    Route::get("/dashboard", [DashboardController::class, "index"])->name(
+        "dashboard"
+    );
+    Route::resource("travel-packages", TravelPackageController::class);
+    Route::resource("galleries", GalleryController::class);
+    Route::resource("transactions", TransactionController::class);
 });
-
-Route::resource("travel-packages", TravelPackageController::class);
-Route::resource("galleries", GalleryController::class);
-Route::resource("transactions", TransactionController::class);
 
 Route::get("/", function () {
     return view("pages.index");
