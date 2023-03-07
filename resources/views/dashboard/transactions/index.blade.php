@@ -53,25 +53,18 @@
                                             <th>Additional Visa</th>
                                             <th>Total Transaction</th>
                                             <th>Status Transaction</th>
+                                            <th>Action</th>
                                         </tr>
                                         <?php $i = 1; ?>
                                         @forelse ($transactions as $item)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $item->travel_package->title }}
+                                                <td>{{ $i }}</td>
+                                                <td>
+                                                    {{ $item->travel_package->title }}
                                                     <div class="table-links">
+                                                        in <a href="#">Web Development</a>
+                                                        <div class="bullet"></div>
                                                         <a href="{{ route('transactions.show', $item->id) }}">View</a>
-                                                        <div class="bullet"></div>
-                                                        <a href="{{ route('transactions.edit', $item->id) }}">Edit</a>
-                                                        <div class="bullet"></div>
-                                                        <a href="#"
-                                                            onclick="event.preventDefault(); document.getElementById('delete-form').submit()"
-                                                            class="text-danger">Trash</a>
-                                                        <form action="{{ route('transactions.destroy', $item->id) }}"
-                                                            method="post" id="delete-form">
-                                                            @csrf
-                                                            @method('delete')
-                                                        </form>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -84,8 +77,28 @@
                                                     {{ $item->transaction_total }}
                                                 </td>
                                                 <td>
-                                                    {{ $item->transaction_status }}
+                                                    <div
+                                                        class="{{ $item->transaction_status == 'SUCCESS' ? 'badge-success' : '' }}
+                                                        {{ $item->transaction_status == 'IN_CART' ? 'badge-info' : '' }}
+                                                        {{ ($item->transaction_status == 'CANCEL' ? 'badge-danger' : '' || $item->transaction_status == 'FAILED') ? 'badge-danger' : '' }}
+                                                         badge badge-pill badge-warning">
+                                                        {{ $item->transaction_status }}
+                                                    </div>
                                                 </td>
+                                                <td>
+                                                    <a href="{{ route('transactions.edit', $item->id) }}"
+                                                        class="btn btn-primary">
+                                                        <i class="fas fa-pencil-alt"></i>
+                                                    </a>
+                                                    <form onsubmit="return confirm('are you fucking sure?')"
+                                                        action="{{ route('transactions.destroy', $item->id) }}"
+                                                        method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button class="btn btn-danger">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </form>
                                             </tr>
                                             <?php $i++; ?>
                                         @empty

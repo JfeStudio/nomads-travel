@@ -58,26 +58,18 @@
                                             <th>Type</th>
                                             <th>Price</th>
                                             <th>Type</th>
+                                            <th>Action</th>
                                         </tr>
                                         <?php $i = 1; ?>
                                         @forelse ($travels as $item)
                                             <tr>
                                                 <td>{{ $i }}</td>
-                                                <td>{{ $item->title }}
+                                                <td>
+                                                    {{ $item->title }}
                                                     <div class="table-links">
+                                                        in <a href="#">Web Development</a>
+                                                        <div class="bullet"></div>
                                                         <a href="#">View</a>
-                                                        <div class="bullet"></div>
-                                                        <a href="{{ route('travel-packages.edit', $item->id) }}">Edit</a>
-                                                        <div class="bullet"></div>
-                                                        <a href="#"
-                                                            onclick="event.preventDefault(); document.getElementById('delete-form').submit()"
-                                                            class="text-danger">Trash</a>
-                                                        <form action="{{ route('travel-packages.destroy', $item->id) }}"
-                                                            method="post" id="delete-form">
-                                                            @csrf
-                                                            @method('delete')
-
-                                                        </form>
                                                     </div>
                                                 </td>
                                                 <td>{{ $item->location }}</td>
@@ -86,6 +78,22 @@
                                                 <td>{{ $item->type }}</td>
                                                 <td>{{ $item->price }}</td>
                                                 <td>{{ $item->type }}</td>
+                                                <td>
+                                                    <div class="d-inline-flex">
+                                                        <a href="{{ route('travel-packages.edit', $item->id) }}"
+                                                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
+                                                            title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                        <form onsubmit="return confirm('are you fucking sure?')"
+                                                            action="{{ route('travel-packages.destroy', $item->id) }}"
+                                                            method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button class="btn btn-danger btn-action" data-toggle="tooltip"
+                                                                title="Delete">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                             </tr>
                                             <?php $i++; ?>
                                         @empty

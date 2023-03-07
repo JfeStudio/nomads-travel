@@ -53,25 +53,18 @@
                                             <th>ID</th>
                                             <th>Title</th>
                                             <th>Image</th>
+                                            <th>Action</th>
                                         </tr>
                                         <?php $i = 1; ?>
                                         @forelse ($galleries as $item)
                                             <tr>
                                                 <td>{{ $i }}</td>
-                                                <td>{{ $item->travel_package->title }}
+                                                <td>
+                                                    {{ $item->travel_package->title }}
                                                     <div class="table-links">
+                                                        in <a href="#">Web Development</a>
+                                                        <div class="bullet"></div>
                                                         <a href="#">View</a>
-                                                        <div class="bullet"></div>
-                                                        <a href="{{ route('galleries.edit', $item->id) }}">Edit</a>
-                                                        <div class="bullet"></div>
-                                                        <a href="#"
-                                                            onclick="event.preventDefault(); document.getElementById('delete-form').submit()"
-                                                            class="text-danger">Trash</a>
-                                                        <form action="{{ route('galleries.destroy', $item->id) }}"
-                                                            method="post" id="delete-form">
-                                                            @csrf
-                                                            @method('delete')
-                                                        </form>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -86,6 +79,21 @@
                                                             class="rounded-circle" width="45" height="45"
                                                             data-toggle="title" title="">
                                                     @endif
+                                                </td>
+                                                <td>
+                                                    <div class="d-inline-flex">
+                                                        <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
+                                                            title="Edit"><i class="fas fa-pencil-alt"></i></a>
+                                                        <form onsubmit="return confirm('are you funcking sure?')"
+                                                            action="{{ route('galleries.destroy', $item->id) }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button type="submit" class="btn btn-danger btn-action">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>

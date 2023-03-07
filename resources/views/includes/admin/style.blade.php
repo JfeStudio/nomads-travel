@@ -8,6 +8,7 @@
 
      <!-- CSS Libraries -->
      @stack('custom-link-summer-note')
+     @stack('color-badges')
      <!-- Template CSS -->
      <link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}" />
      <link rel="stylesheet" href="{{ asset('backend/assets/css/components.css') }}" />
