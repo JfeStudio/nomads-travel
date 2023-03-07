@@ -8,7 +8,7 @@
             <nav class="flex rounded-lg border border-gray-200 bg-white px-5 py-3 text-gray-700" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
-                        <a href="{{ route('pages.index') }}"
+                        <a href="{{ route('home') }}"
                             class="inline-flex items-center text-sm font-normal text-gray-400 hover:text-blue-400">
                             <svg aria-hidden="true" class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -40,59 +40,43 @@
             <div class="container mx-auto my-4 lg:my-5">
                 <div class="flex flex-col items-start justify-between gap-y-5 lg:flex-row">
                     <div class="basis-full rounded-lg border border-gray-100 bg-white p-5 shadow lg:basis-[64%]">
-                        <h3 class="text-2xl font-semibold text-gray-900">Nusa Penida</h3>
-                        <p class="text-sm text-gray-400">Republic of Indonesia Raya</p>
+                        <h3 class="text-2xl font-semibold text-gray-900">{{ $detail->title }}</h3>
+                        <p class="text-sm text-gray-400">{{ $detail->location }}</p>
                         <div class="mt-4">
                             <div>
-                                <img id="xzoom-default" class="xzoom w-full rounded-md drop-shadow-sm"
-                                    src="{{ asset('frontend') }}/assets/images/details-1.jpg"
-                                    xoriginal="{{ asset('frontend') }}/assets/images/details-1.jpg" alt="" />
+                                @if ($detail->galleries->count())
+                                    <img id="xzoom-default" class="xzoom w-full rounded-md drop-shadow-sm"
+                                        src="{{ Storage::url($detail->galleries->first()->image) }}"
+                                        xoriginal="{{ Storage::url($detail->galleries->first()->image) }}" alt="" />
+                                @else
+                                    <img id="xzoom-default" class="xzoom w-full rounded-md drop-shadow-sm"
+                                        src="{{ asset('frontend') }}/assets/images/details-1.jpg"
+                                        xoriginal="{{ asset('frontend') }}/assets/images/details-1.jpg" alt="" />
+                                @endif
                             </div>
                             <div class="flex items-center justify-between gap-1 p-2">
-                                <a href="{{ asset('frontend') }}/assets/images/details-1.jpg">
-                                    <img class="xzoom-gallery m-0 w-24 rounded-sm opacity-60"
-                                        src="{{ asset('frontend') }}/assets/images/details-1.jpg" alt="image"
-                                        xpreview="{{ asset('frontend') }}/assets/images/details-1.jpg" />
-                                </a>
-                                <a href="{{ asset('frontend') }}/assets/images/details-1.jpg">
-                                    <img class="xzoom-gallery m-0 w-24 rounded-sm"
-                                        src="{{ asset('frontend') }}/assets/images/details-1.jpg" alt="image"
-                                        xpreview="{{ asset('frontend') }}/assets/images/details-1.jpg" />
-                                </a>
-                                <a href="{{ asset('frontend') }}/assets/images/details-1.jpg">
-                                    <img class="xzoom-gallery m-0 w-24 rounded-sm"
-                                        src="{{ asset('frontend') }}/assets/images/details-1.jpg" alt="image"
-                                        xpreview="{{ asset('frontend') }}/assets/images/details-1.jpg" />
-                                </a>
-                                <a href="{{ asset('frontend') }}/assets/images/details-1.jpg">
-                                    <img class="xzoom-gallery m-0 w-24 rounded-sm"
-                                        src="{{ asset('frontend') }}/assets/images/details-1.jpg" alt="image"
-                                        xpreview="{{ asset('frontend') }}/assets/images/details-1.jpg" />
-                                </a>
-                                <a href="{{ asset('frontend') }}/assets/images/details-1.jpg">
-                                    <img class="xzoom-gallery m-0 w-24 rounded-sm"
-                                        src="{{ asset('frontend') }}/assets/images/details-1.jpg" alt="image"
-                                        xpreview="{{ asset('frontend') }}/assets/images/details-1.jpg" />
-                                </a>
+                                @forelse ($detail->galleries as $item)
+                                    <a href="{{ Storage::url($item->image) }}">
+                                        <img class="xzoom-gallery m-0 w-24 rounded-sm opacity-60"
+                                            src="{{ Storage::url($item->image) }}" alt="image"
+                                            xpreview="{{ Storage::url($item->image) }}" />
+                                    </a>
+                                @empty
+                                    <a href="{{ asset('frontend') }}/assets/images/details-1.jpg">
+                                        <img class="xzoom-gallery m-0 w-24 rounded-sm opacity-60"
+                                            src="{{ asset('frontend') }}/assets/images/details-1.jpg" alt="image"
+                                            xpreview="{{ asset('frontend') }}/assets/images/details-1.jpg" />
+                                    </a>
+                                @endforelse
                             </div>
                             <div class="mt-2.5 p-2">
                                 <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+                                    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900">
                                         Tentang Wisata
                                     </h5>
                                 </a>
                                 <p class="mb-3 text-sm font-normal text-gray-400">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Earum a laudantium eum sapiente, voluptates iusto dicta
-                                    dolores. A harum fugiat laborum et laboriosam doloremque
-                                    maiores. Nostrum autem non voluptates nobis, aperiam, unde
-                                    repellendus tenetur quisquam laborum pariatur harum atque
-                                    veniam. Magnam sint provident reprehenderit aliquid? Lorem
-                                    ipsum dolor, sit amet consectetur adipisicing elit.
-                                    Voluptate repellendus beatae, incidunt, placeat possimus
-                                    exercitationem quibusdam temporibus explicabo inventore,
-                                    dolore doloremque ducimus et quidem numquam eaque expedita
-                                    totam minus quos!
+                                    {!! $detail->about !!}
                                 </p>
                                 <div class="mt-7 flex">
                                     <div
@@ -103,7 +87,7 @@
                                             <h5 class="text-sm font-medium text-blue-400">
                                                 Featured Event
                                             </h5>
-                                            <p class="text-xs text-gray-300">Food Wars</p>
+                                            <p class="text-xs text-gray-300">{{ $detail->featured_event }}</p>
                                         </div>
                                     </div>
                                     <div
@@ -114,7 +98,7 @@
                                             <h5 class="text-sm font-medium text-blue-400">
                                                 Language
                                             </h5>
-                                            <p class="text-xs text-gray-300">Bahasa Indonesia</p>
+                                            <p class="text-xs text-gray-300">{{ $detail->language }}</p>
                                         </div>
                                     </div>
                                     <div class="flex flex-col items-center gap-2 px-4 lg:flex-row">
@@ -122,7 +106,7 @@
                                             alt="images" />
                                         <div class="text-center lg:text-left">
                                             <h5 class="text-sm font-medium text-blue-400">Foods</h5>
-                                            <p class="text-xs text-gray-300">Local Foods</p>
+                                            <p class="text-xs text-gray-300">{{ $detail->foods }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -154,38 +138,51 @@
                                         <h5 class="text-[.925rem] font-medium text-gray-900">
                                             Date of Depature
                                         </h5>
-                                        <span class="text-sm text-gray-400">22 Aug, 2019</span>
+                                        <span class="text-sm text-gray-400">{{ $date }}</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <h5 class="text-[.925rem] font-medium text-gray-900">
                                             Duration
                                         </h5>
-                                        <span class="text-sm text-gray-400">4D 3N</span>
+                                        <span class="text-sm text-gray-400">{{ $detail->duration }}</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <h5 class="text-[.925rem] font-medium text-gray-900">
                                             Type
                                         </h5>
-                                        <span class="text-sm text-gray-400">Open Trip</span>
+                                        <span class="text-sm text-gray-400">{{ $detail->type }}</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <h5 class="text-[.925rem] font-medium text-gray-900">
                                             Price
                                         </h5>
-                                        <span class="text-sm text-gray-400">$80.00 / person</span>
+                                        <span class="text-sm text-gray-400">{{ $detail->price }},00 / person</span>
                                     </div>
                                 </div>
                             </div>
-                            <a href="{{ route('checkout') }}"
-                                class="mt-8 flex items-center justify-center rounded-md bg-blue-500 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300">
-                                Join Now
-                                <svg aria-hidden="true" class="ml-2 -mr-1 h-[0.9rem] w-[0.9rem]" fill="currentColor"
-                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </a>
+                            @auth
+                                <a href="{{ route('checkout') }}"
+                                    class="mt-8 flex items-center justify-center rounded-md bg-blue-500 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                    Join Now
+                                    <svg aria-hidden="true" class="ml-2 -mr-1 h-[0.9rem] w-[0.9rem]" fill="currentColor"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            @else
+                                <a href="{{ route('login') }}"
+                                    class="mt-8 flex items-center justify-center rounded-md bg-blue-500 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300">
+                                    Login or Register to Join
+                                    <svg aria-hidden="true" class="ml-2 -mr-1 h-[0.9rem] w-[0.9rem]" fill="currentColor"
+                                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </a>
+                            @endauth
                         </div>
                     </div>
                 </div>

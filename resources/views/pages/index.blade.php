@@ -61,8 +61,12 @@
             <div class="mt-14 flex flex-wrap justify-center gap-8 md:mt-24 lg:justify-between lg:gap-5">
                 @foreach ($home as $item)
                     <div class="card-travel relative max-w-[18rem] overflow-hidden rounded-sm shadow-3xl lg:max-w-[16rem]">
-                        <img class="w-full transition-all duration-300 ease-in-out"
-                            src="{{ Storage::url($item->galleries->first()->image) }}" alt="card image" />
+                        @if ($item->galleries->count())
+                            <img class="w-full transition-all duration-300 ease-in-out"
+                                src="{{ Storage::url($item->galleries->first()->image) }}" alt="card image" />
+                        @else
+                            <img class="w-full transition-all duration-300 ease-in-out" src="#" alt="card image" />
+                        @endif
                         <!-- title card -->
                         <div
                             class="absolute inset-0 z-10 flex flex-col items-center bg-slate-700/10 p-6 text-center text-white">
@@ -71,7 +75,7 @@
                                 <h4 class="font-medium uppercase">{{ $item->title }}</h4>
                             </div>
                             <a class="mt-auto max-w-max rounded-sm bg-orange-400 px-6 py-2.5 text-center text-xs font-medium leading-none text-slate-50 shadow-sm hover:bg-orange-500/90 md:text-sm"
-                                href="{{ route('pages.show', $item->slug) }}">View Details</a>
+                                href="{{ route('detail', $item->slug) }}">View Details</a>
                         </div>
                     </div>
                 @endforeach

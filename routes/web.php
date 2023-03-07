@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DetailController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TransactionController;
@@ -38,9 +39,9 @@ Route::middleware(["auth", EnsureTokenIsValid::class])->group(function () {
 
 Route::get("/", [HomeController::class, "index"])->name("home");
 
-Route::get("/pages/detail/{slug}", function () {
-    return view("pages.show");
-})->name("pages.show");
+Route::get("/pages/detail/{slug}", [DetailController::class, "index"])->name(
+    "detail"
+);
 
 Route::get("/pages/detail/checkout", function () {
     return view("pages.checkout");
