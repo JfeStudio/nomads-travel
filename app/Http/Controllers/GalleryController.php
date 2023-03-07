@@ -66,7 +66,6 @@ class GalleryController extends Controller
     public function edit(Gallery $gallery)
     {
         $travel_packages = TravelPackage::all();
-        // dd($travel_packages, $gallery);
         return view(
             "dashboard.galleries.edit",
             compact("gallery", "travel_packages")
@@ -85,7 +84,7 @@ class GalleryController extends Controller
         ]);
 
         $data = $request->all();
-        if ($request->file("image")) {
+        if ($request->hasFile("image")) {
             Storage::delete("public/" . $gallery->image);
             $data["image"] = $request
                 ->file("image")

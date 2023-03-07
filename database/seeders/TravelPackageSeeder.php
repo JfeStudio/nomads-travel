@@ -15,9 +15,9 @@ class TravelPackageSeeder extends Seeder
     {
         $travel_packages = [
             [
-                "title" => "Bali Pandawa",
-                "slug" => "bali-pandawa",
-                "location" => "Bandung",
+                "title" => "Derata, Bali",
+                "slug" => "derata-bali",
+                "location" => "Indonesia",
                 "about" =>
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.",
                 "featured_event" =>
@@ -30,9 +30,9 @@ class TravelPackageSeeder extends Seeder
                 "price" => 1000000,
             ],
             [
-                "title" => "Pantai Selatan",
-                "slug" => "pantai-selatan",
-                "location" => "Jakarta",
+                "title" => "Bromo, Prob",
+                "slug" => "bromo-prob",
+                "location" => "Indonesia",
                 "about" =>
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.",
                 "featured_event" =>
@@ -45,8 +45,8 @@ class TravelPackageSeeder extends Seeder
                 "price" => 3000000,
             ],
             [
-                "title" => "Malang Batu",
-                "slug" => "malang-batu",
+                "title" => "Nusa Penida",
+                "slug" => "nusa-penida",
                 "location" => "Bali",
                 "about" =>
                     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.",
@@ -58,6 +58,21 @@ class TravelPackageSeeder extends Seeder
                 "duration" => "5D",
                 "type" => "Open Trip",
                 "price" => 5000000,
+            ],
+            [
+                "title" => "Pulau Derawan",
+                "slug" => "pulau-derawan",
+                "location" => "Kalimantan",
+                "about" =>
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.",
+                "featured_event" =>
+                    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae.",
+                "language" => "Indonesia",
+                "foods" => "Makan Gila",
+                "departure_date" => "2021-03-03",
+                "duration" => "5D",
+                "type" => "Open Trip",
+                "price" => 10000000,
             ],
         ];
         foreach ($travel_packages as $value) {

@@ -86,19 +86,22 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <a href="{{ route('transactions.edit', $item->id) }}"
-                                                        class="btn btn-primary">
-                                                        <i class="fas fa-pencil-alt"></i>
-                                                    </a>
-                                                    <form onsubmit="return confirm('are you fucking sure?')"
-                                                        action="{{ route('transactions.destroy', $item->id) }}"
-                                                        method="POST" class="d-inline">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button class="btn btn-danger">
-                                                            <i class="fas fa-trash"></i>
-                                                        </button>
-                                                    </form>
+                                                    <div class="d-flex">
+                                                        <a href="{{ route('transactions.edit', $item->id) }}"
+                                                            class="btn mr-1 btn-primary">
+                                                            <i class="fas fa-pencil-alt"></i>
+                                                        </a>
+                                                        <form onsubmit="return confirm('are you fucking sure?')"
+                                                            action="{{ route('transactions.destroy', $item->id) }}"
+                                                            method="POST" class="d-inline">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button class="btn btn-danger">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </td>
                                             </tr>
                                             <?php $i++; ?>
                                         @empty

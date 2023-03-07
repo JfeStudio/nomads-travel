@@ -4,12 +4,49 @@
     <div class="hero-pattern relative bg-cover">
         <!-- navigation -->
         @include('includes.navigation')
+        <!-- main content -->
+        <div class="flex h-[35rem] items-center justify-center md:h-[33rem]">
+            <div class="m-auto text-center lg:w-1/2">
+                <h1
+                    class="text-[2.1rem] font-semibold text-slate-50 md:text-[3.2rem] md:leading-snug lg:text-5xl lg:leading-tight">
+                    Explore The Beautiful World As Easy One Click
+                </h1>
+                <p class="my-7 text-lg text-slate-50">
+                    You will see beatiful <br />
+                    moment you never see before
+                </p>
+                <a class="m-auto block max-w-max rounded-sm bg-orange-500 px-5 py-2.5 text-center text-xs font-medium leading-none text-slate-50 shadow-sm hover:bg-orange-500/90 md:text-sm"
+                    href="#popular">Get Started</a>
+            </div>
+        </div>
         <!-- end -->
-        @include('includes.header')
-        <!-- content -->
+        <!-- content absolute -->
+        <div
+            class="absolute right-1/2 -bottom-9 z-20 flex w-11/12 translate-x-1/2 items-center justify-between rounded-sm border border-slate-100 bg-white py-3 px-5 text-center shadow-sm md:-bottom-11 md:w-2/3 md:py-3.5 md:px-12 md:text-left lg:w-1/2">
+            <div class="">
+                <span class="text-lg font-semibold text-gray-900 lg:text-2xl">20K</span>
+                <p class="text-sm font-normal text-slate-600 lg:text-base">Members</p>
+            </div>
+            <div class="">
+                <span class="text-lg font-semibold text-gray-900 lg:text-2xl">12</span>
+                <p class="text-sm font-normal text-slate-600 lg:text-base">
+                    Countries
+                </p>
+            </div>
+            <div class="">
+                <span class="text-lg font-semibold text-gray-900 lg:text-2xl">3k</span>
+                <p class="text-sm font-normal text-slate-600 lg:text-base">Hotels</p>
+            </div>
+            <div class="">
+                <span class="text-lg font-semibold text-gray-900 lg:text-2xl">72</span>
+                <p class="text-sm font-normal text-slate-600 lg:text-base">
+                    Partners
+                </p>
+            </div>
+        </div>
     </div>
     <!-- wisata popular -->
-    <section class="bg-tourism relative pt-28">
+    <section id='popular' class="bg-tourism relative pt-28 -scroll-mt-12">
         <div class="container z-10 mx-auto">
             <div class="text-center">
                 <h1 class="font-semibold text-slate-100 md:text-4xl">
@@ -22,62 +59,22 @@
             </div>
             <!-- card -->
             <div class="mt-14 flex flex-wrap justify-center gap-8 md:mt-24 lg:justify-between lg:gap-5">
-                <div class="card-travel relative max-w-[18rem] overflow-hidden rounded-sm shadow-3xl lg:max-w-[16rem]">
-                    <img class="w-full transition-all duration-300 ease-in-out"
-                        src="{{ asset('frontend') }}/assets/images/travel-1.jpg" alt="card image" />
-                    <!-- title card -->
-                    <div
-                        class="absolute inset-0 z-10 flex flex-col items-center bg-slate-700/10 p-6 text-center text-white">
-                        <div class="">
-                            <span class="mb-1 uppercase text-gray-300">indonesia</span>
-                            <h4 class="font-medium uppercase">Deratan, Bali</h4>
+                @foreach ($home as $item)
+                    <div class="card-travel relative max-w-[18rem] overflow-hidden rounded-sm shadow-3xl lg:max-w-[16rem]">
+                        <img class="w-full transition-all duration-300 ease-in-out"
+                            src="{{ Storage::url($item->galleries->first()->image) }}" alt="card image" />
+                        <!-- title card -->
+                        <div
+                            class="absolute inset-0 z-10 flex flex-col items-center bg-slate-700/10 p-6 text-center text-white">
+                            <div class="">
+                                <span class="mb-1 uppercase text-gray-300">{{ $item->location }}</span>
+                                <h4 class="font-medium uppercase">{{ $item->title }}</h4>
+                            </div>
+                            <a class="mt-auto max-w-max rounded-sm bg-orange-400 px-6 py-2.5 text-center text-xs font-medium leading-none text-slate-50 shadow-sm hover:bg-orange-500/90 md:text-sm"
+                                href="{{ route('pages.show', $item->slug) }}">View Details</a>
                         </div>
-                        <a class="mt-auto max-w-max rounded-sm bg-orange-400 px-6 py-2.5 text-center text-xs font-medium leading-none text-slate-50 shadow-sm hover:bg-orange-500/90 md:text-sm"
-                            href="{{ route('pages.show') }}">View Details</a>
                     </div>
-                </div>
-                <div class="card-travel relative max-w-[18rem] overflow-hidden rounded-sm shadow-3xl lg:max-w-[16rem]">
-                    <img class="w-full transition-all duration-300 ease-in-out"
-                        src="{{ asset('frontend') }}/assets/images/travel-2.jpg" alt="card image" />
-                    <!-- title card -->
-                    <div
-                        class="absolute inset-0 z-10 flex flex-col items-center bg-slate-700/10 p-6 text-center text-white">
-                        <div class="">
-                            <span class="mb-1 uppercase text-gray-300">indonesia</span>
-                            <h4 class="font-medium uppercase">Bromo, Prob</h4>
-                        </div>
-                        <a class="mt-auto block max-w-max rounded-sm bg-orange-400 px-6 py-2.5 text-center text-xs font-medium leading-none text-slate-50 shadow-sm hover:bg-orange-500/90 md:text-sm"
-                            href="#">View Details</a>
-                    </div>
-                </div>
-                <div class="card-travel relative max-w-[18rem] overflow-hidden rounded-sm shadow-3xl lg:max-w-[16rem]">
-                    <img class="w-full transition-all duration-300 ease-in-out"
-                        src="{{ asset('frontend') }}/assets/images/travel-3.jpg" alt="card image" />
-                    <!-- title card -->
-                    <div
-                        class="absolute inset-0 z-10 flex flex-col items-center bg-slate-700/10 p-6 text-center text-white">
-                        <div class="">
-                            <span class="mb-1 uppercase text-gray-300">indonesia</span>
-                            <h4 class="font-medium uppercase">Nusa penida</h4>
-                        </div>
-                        <a class="mt-auto block max-w-max rounded-sm bg-orange-400 px-6 py-2.5 text-center text-xs font-medium leading-none text-slate-50 shadow-sm hover:bg-orange-500/90 md:text-sm"
-                            href="#">View Details</a>
-                    </div>
-                </div>
-                <div class="card-travel relative max-w-[18rem] overflow-hidden rounded-sm shadow-3xl lg:max-w-[16rem]">
-                    <img class="w-full transition-all duration-300 ease-in-out"
-                        src="{{ asset('frontend') }}/assets/images/travel-4.jpg" alt="card image" />
-                    <!-- title card -->
-                    <div
-                        class="absolute inset-0 z-10 flex flex-col items-center bg-slate-700/10 p-6 text-center text-white">
-                        <div class="">
-                            <span class="mb-1 uppercase text-gray-300">middle east</span>
-                            <h4 class="font-medium uppercase">Dubai</h4>
-                        </div>
-                        <a class="mt-auto block max-w-max rounded-sm bg-orange-400 px-6 py-2.5 text-center text-xs font-medium leading-none text-slate-50 shadow-sm hover:bg-orange-500/90 md:text-sm"
-                            href="#">View Details</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -186,7 +183,7 @@
                 <a class="block max-w-max rounded-sm bg-gray-300/50 py-3 px-7 text-center text-[.85rem] font-medium leading-none text-gray-400 shadow-sm hover:bg-gray-300/50 md:px-7 md:py-2.5 md:text-sm"
                     href="#">I Need Help</a>
                 <a class="block max-w-max rounded-sm bg-orange-500 py-3 px-7 text-center text-[.85rem] font-medium leading-none text-slate-50 shadow-sm hover:bg-orange-500/90 md:px-7 md:py-2.5 md:text-sm"
-                    href="#">Get Started</a>
+                    href="{{ route('login') }}">Get Started</a>
             </div>
         </div>
     </section>

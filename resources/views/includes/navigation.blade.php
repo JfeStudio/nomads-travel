@@ -1,7 +1,7 @@
 <header class="mx-auto lg:container">
     <div class="navigation m-auto w-full">
         <nav class="relative flex items-center justify-between px-4 py-4 lg:bg-white">
-            <a class="text-3xl font-bold leading-none" href="{{ route('pages.index') }}">
+            <a class="text-3xl font-bold leading-none" href="{{ route('home') }}">
                 <img src="{{ asset('frontend') }}/assets/images/logo.png" class="w-24 drop-shadow-xl" alt="logo" />
             </a>
             <div class="lg:hidden">
@@ -98,7 +98,7 @@
             <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
             <nav class="fixed top-0 left-0 bottom-0 flex w-5/6 max-w-sm flex-col overflow-y-auto bg-white py-6 px-6">
                 <div class="mb-8 flex items-center">
-                    <a class="mr-auto text-3xl font-bold leading-none" href="{{ route('pages.index') }}">
+                    <a class="mr-auto text-3xl font-bold leading-none" href="{{ route('home') }}">
                         <img src="{{ asset('frontend') }}/assets/images/logo.png" class="w-24 drop-shadow-xl"
                             alt="logo" />
                     </a>

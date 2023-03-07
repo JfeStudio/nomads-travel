@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TravelPackageController;
 use App\Http\Middleware\EnsureTokenIsValid;
@@ -35,11 +36,9 @@ Route::middleware(["auth", EnsureTokenIsValid::class])->group(function () {
     Route::resource("transactions", TransactionController::class);
 });
 
-Route::get("/", function () {
-    return view("pages.index");
-})->name("pages.index");
+Route::get("/", [HomeController::class, "index"])->name("home");
 
-Route::get("/pages/detail", function () {
+Route::get("/pages/detail/{slug}", function () {
     return view("pages.show");
 })->name("pages.show");
 

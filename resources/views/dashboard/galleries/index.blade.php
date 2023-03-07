@@ -82,7 +82,8 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-inline-flex">
-                                                        <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
+                                                        <a href="{{ route('galleries.edit', $item->id) }}"
+                                                            class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
                                                             title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                                         <form onsubmit="return confirm('are you funcking sure?')"
                                                             action="{{ route('galleries.destroy', $item->id) }}"

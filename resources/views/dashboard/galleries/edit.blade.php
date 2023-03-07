@@ -45,10 +45,10 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Thumbnail</label>
                                     <div class="col-sm-12 col-md-7">
-                                        @if ($item->image)
+                                        @if ($gallery->image)
                                             <img style="object-fit: cover" alt="image"
-                                                src="{{ Storage::url($item->image) }}" class="rounded-circle" width="60"
-                                                height="60" data-toggle="title" title="">
+                                                src="{{ Storage::url($gallery->image) }}" class="rounded-circle"
+                                                width="60" height="60" data-toggle="title" title="">
                                         @else
                                             <img style="object-fit: cover" alt="image"
                                                 src="{{ asset('backend/assets/img/avatar/avatar-1.png') }}"
