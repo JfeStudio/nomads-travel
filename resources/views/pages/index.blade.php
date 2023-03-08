@@ -65,7 +65,8 @@
                             <img class="w-full transition-all duration-300 ease-in-out"
                                 src="{{ Storage::url($item->galleries->first()->image) }}" alt="card image" />
                         @else
-                            <img class="w-full transition-all duration-300 ease-in-out" src="#" alt="card image" />
+                            <img class="w-full transition-all duration-300 ease-in-out"
+                                src="{{ asset('frontend') }}/assets/images/travel-1.jpg" alt="card image" />
                         @endif
                         <!-- title card -->
                         <div

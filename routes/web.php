@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\GalleryController;
@@ -35,6 +36,23 @@ Route::middleware(["auth", EnsureTokenIsValid::class])->group(function () {
     Route::resource("travel-packages", TravelPackageController::class);
     Route::resource("galleries", GalleryController::class);
     Route::resource("transactions", TransactionController::class);
+});
+
+Route::middleware("auth")->group(function () {
+    Route::get("/checkout/{checkout}", [ CheckoutController::class, "index", ])->name("checkout");
+    Route::post("/checkout/{checkout}", [
+        CheckoutController::class,
+        "process",
+    ])->name("checkout-process");
+    //route remove
+    Route::delete("/checkout/{checkout}", [
+        CheckoutController::class,
+        "remove",
+    ])->name("checkout-remove");
+    Route::post("/checkout/create/{checkout}", [
+        CheckoutController::class,
+        "create",
+    ])->name("checkout-create");
 });
 
 Route::get("/", [HomeController::class, "index"])->name("home");

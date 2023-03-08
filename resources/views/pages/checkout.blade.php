@@ -9,7 +9,7 @@
             <nav class="flex rounded-lg border border-gray-200 bg-white px-5 py-3 text-gray-700" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
                     <li class="inline-flex items-center">
-                        <a href="{{ route('pages.index') }}"
+                        <a href="{{ route('home') }}"
                             class="inline-flex items-center text-sm font-normal text-gray-400 hover:text-blue-400">
                             <svg aria-hidden="true" class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -28,7 +28,7 @@
                                     d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <a href="{{ route('pages.show') }}"
+                            <a href="#"
                                 class="ml-1 text-sm font-normal text-gray-400 hover:text-blue-400 md:ml-2">Detail</a>
                         </div>
                     </li>
@@ -115,8 +115,8 @@
                                             <select id="countries"
                                                 class="block w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500">
                                                 <option selected>Visa</option>
-                                                <option value="1">Visa 1</option>
-                                                <option value="2">Visa 2</option>
+                                                <option value="1">30 Days</option>
+                                                <option value="2">N/A</option>
                                             </select>
                                         </div>
                                         <div>
@@ -216,7 +216,7 @@
                                             clip-rule="evenodd"></path>
                                     </svg>
                                 </a>
-                                <a href="{{ route('pages.show') }}"
+                                <a href="#"
                                     class="mt-3 block text-center text-[.8rem] font-medium text-gray-500 underline hover:no-underline focus:outline-none">
                                     Cencel Booking
                                 </a>
