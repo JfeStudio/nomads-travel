@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Transaction extends Model
 {
@@ -17,6 +18,15 @@ class Transaction extends Model
         "transaction_total",
         "transaction_status",
     ];
+    public function getIsRegisteredAttribute()
+    {
+        if (!Auth::check()) {
+            return false;
+        }
+        return Transaction::where("travel_packages_id", $this->id)
+            ->where("users_id", Auth::id())
+            ->exists();
+    }
 
     // protected $hidden = [];
 

@@ -20,8 +20,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             TravelPackageSeeder::class,
             GallerySeeder::class,
-            TransactionSeeder::class,
-            TransactionDetailSeeder::class,
+            // TransactionSeeder::class,
+            // TransactionDetailSeeder::class,
         ]);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

@@ -25,10 +25,6 @@ use Illuminate\Support\Facades\Route;
 
 // auth
 
-// Route::get("/", function () {
-//     return view("welcome");
-// });
-
 Route::middleware(["auth", EnsureTokenIsValid::class])->group(function () {
     Route::get("/dashboard", [DashboardController::class, "index"])->name(
         "dashboard"
@@ -39,20 +35,28 @@ Route::middleware(["auth", EnsureTokenIsValid::class])->group(function () {
 });
 
 Route::middleware("auth")->group(function () {
-    Route::get("/checkout/{checkout}", [ CheckoutController::class, "index", ])->name("checkout");
+    Route::get("/checkout/{checkout}", [
+        CheckoutController::class,
+        "index",
+    ])->name("checkout");
     Route::post("/checkout/{checkout}", [
         CheckoutController::class,
         "process",
     ])->name("checkout-process");
-    //route remove
-    Route::delete("/checkout/{checkout}", [
-        CheckoutController::class,
-        "remove",
-    ])->name("checkout-remove");
     Route::post("/checkout/create/{checkout}", [
         CheckoutController::class,
         "create",
     ])->name("checkout-create");
+    // route remove
+    Route::get("/checkout/remove/{checkout}", [
+        CheckoutController::class,
+        "remove",
+    ])->name("checkout-remove");
+    // route success
+    Route::get("/checkout/{checkout}/success", [
+        CheckoutController::class,
+        "success",
+    ])->name("checkout-success");
 });
 
 Route::get("/", [HomeController::class, "index"])->name("home");
@@ -61,10 +65,6 @@ Route::get("/pages/detail/{slug}", [DetailController::class, "index"])->name(
     "detail"
 );
 
-Route::get("/pages/detail/checkout", function () {
-    return view("pages.checkout");
-})->name("checkout");
-
-Route::get("/success", function () {
-    return view("pages.success");
-})->name("success");
+// Route::get("/success", function () {
+//     return view("pages.success");
+// })->name("success");

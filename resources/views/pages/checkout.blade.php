@@ -51,10 +51,11 @@
         <!-- content -->
         <section>
             <div class="container mx-auto my-3 lg:my-5">
-                <div class="flex w-full flex-col items-start justify-between gap-y-5 lg:flex-row">
+                <div class="flex w-full flex-col items-start gap-5 justify-between gap-y-5 lg:flex-row">
                     <div class="w-full rounded-lg border border-gray-100 bg-white p-5 shadow lg:basis-[64%]">
                         <h3 class="text-2xl font-semibold text-gray-900">Who is Going</h3>
-                        <p class="text-sm text-gray-400">Trip to Ubud Bali, Indonesia</p>
+                        <p class="text-sm text-gray-400">Trip to {{ $item->travel_package->title }},
+                            {{ $item->travel_package->location }}</p>
                         <div class="mt-4">
                             <div class="relative overflow-x-auto">
                                 <table class="w-full text-left text-sm text-gray-500">
@@ -69,34 +70,33 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="bg-white">
-                                            <td class="px-6 py-4">
-                                                <img class="w-11 rounded-full"
-                                                    src="{{ asset('frontend') }}/assets/images/user-5.png" alt="" />
-                                            </td>
-                                            <th scope="row"
-                                                class="whitespace-nowrap px-6 py-4 font-medium text-gray-900">
-                                                Kila
-                                            </th>
-                                            <td class="px-6 py-4">SG</td>
-                                            <td class="px-6 py-4">30 Days</td>
-                                            <td class="px-6 py-4">Active</td>
-                                            <td class="px-6 py-4 font-bold">X</td>
-                                        </tr>
-                                        <tr class="bg-white">
-                                            <td class="px-6 py-4">
-                                                <img class="w-11 rounded-full"
-                                                    src="{{ asset('frontend') }}/assets/images/user-4.png" alt="" />
-                                            </td>
-                                            <th scope="row"
-                                                class="whitespace-nowrap px-6 py-4 font-medium text-gray-900">
-                                                Alice
-                                            </th>
-                                            <td class="px-6 py-4">CN</td>
-                                            <td class="px-6 py-4">N/A</td>
-                                            <td class="px-6 py-4">Active</td>
-                                            <td class="px-6 py-4 font-bold">X</td>
-                                        </tr>
+                                        @forelse ($item->details as $detail)
+                                            <tr class="bg-white">
+                                                <td class="px-6 py-4">
+                                                    <img class="w-11 rounded-full"
+                                                        src="{{ asset('frontend') }}/assets/images/user-5.png"
+                                                        alt="" />
+                                                </td>
+                                                <th scope="row"
+                                                    class="whitespace-nowrap px-6 py-4 font-medium text-gray-900">
+                                                    {{ $detail->name }}
+                                                </th>
+                                                <td class="px-6 py-4">{{ $detail->nationality }}</td>
+                                                <td class="px-6 py-4">{{ $detail->is_visa ? '30 Days' : 'N/A' }}</td>
+                                                <td class="px-6 py-4">Active</td>
+                                                <td class="px-6 py-4 font-bold">
+                                                    <a href="{{ route('checkout-remove', $detail->id) }}"
+                                                        class="text-red-500 hover:text-red-600">X</a>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr class="bg-white">
+                                                <td colspan="6" class="text-center p-5">
+                                                    No Visitor
+                                                </td>
+                                            </tr>
+                                        @endforelse
+
                                     </tbody>
                                 </table>
                             </div>
@@ -104,25 +104,40 @@
                                 <h4 class="mb-2.5 text-base font-semibold text-gray-900">
                                     Add Member
                                 </h4>
-                                <form>
-                                    <div class="mb-6 grid gap-3 md:grid-cols-4">
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                <form action="{{ route('checkout-create', $item->id) }}" method="post">
+                                    @csrf
+                                    <div class="mb-6 grid gap-3 md:grid-cols-5">
                                         <div>
-                                            <input type="text" id="first_name"
+                                            <input type="text" id="first_name" name="name"
                                                 class="block w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-                                                placeholder="Username" required />
+                                                placeholder="Username" />
                                         </div>
                                         <div>
-                                            <select id="countries"
+                                            <input type="text" id="first_name" name="nationality"
+                                                class="block w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+                                                placeholder="CN" required />
+                                        </div>
+                                        <div>
+                                            <select id="countries" name="is_visa"
                                                 class="block w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500">
                                                 <option selected>Visa</option>
                                                 <option value="1">30 Days</option>
-                                                <option value="2">N/A</option>
+                                                <option value="0">N/A</option>
                                             </select>
                                         </div>
                                         <div>
-                                            <input type="month" id="first_name"
+                                            <input type="date" id="first_name" name="doe_passport"
                                                 class="block w-full rounded-md border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
-                                                placeholder="DOE Passport" required />
+                                                placeholder="DOE Passport" />
                                         </div>
                                         <button type="submit"
                                             class="w-full rounded-md bg-blue-500 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
@@ -149,31 +164,35 @@
                                 <div class="mt-2.5 flex flex-col gap-2.5">
                                     <div class="flex items-center justify-between">
                                         <h5 class="text-sm font-medium text-gray-800">Members</h5>
-                                        <span class="text-sm text-gray-400">2 person</span>
+                                        <span class="text-sm text-gray-400">{{ $item->details->count() }} person</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <h5 class="text-sm font-medium text-gray-800">
                                             Additional VISA
                                         </h5>
-                                        <span class="text-sm text-gray-400">$ 190.00</span>
+                                        <span class="text-sm text-gray-400">${{ $item->additional_visa }},00</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <h5 class="text-sm font-medium text-gray-800">
                                             Trip Price
                                         </h5>
-                                        <span class="text-sm text-gray-400">$ 80.00 / person</span>
+                                        <span class="text-sm text-gray-400">${{ $item->travel_package->price }},00 /
+                                            person</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <h5 class="text-sm font-medium text-gray-800">
                                             Sub Total
                                         </h5>
-                                        <span class="text-sm text-gray-400">$ 280.00</span>
+                                        <span class="text-sm text-gray-400">${{ $item->transaction_total }},00</span>
                                     </div>
                                     <div class="flex items-center justify-between">
                                         <h5 class="text-sm font-medium text-gray-800">
                                             Total (+Unique Code)
                                         </h5>
-                                        <span class="text-sm font-bold text-gray-800">$ 279,33</span>
+                                        <span class="text-sm font-bold text-gray-800">
+                                            ${{ $item->transaction_total }},<span
+                                                class='text-orange-500'>{{ mt_rand(0, 99) }}</span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -206,7 +225,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="{{ route('success') }}"
+                                <a href="{{ route('checkout-success', $item->id) }}"
                                     class="mt-8 flex items-center justify-center rounded-md bg-blue-500 px-5 py-2 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-flex lg:flex">
                                     I Have Made Payment
                                     <svg aria-hidden="true" class="ml-2 -mr-1 h-[0.9rem] w-[0.9rem]" fill="currentColor"
@@ -216,7 +235,7 @@
                                             clip-rule="evenodd"></path>
                                     </svg>
                                 </a>
-                                <a href="#"
+                                <a href="{{ route('detail', $item->travel_package->slug) }}"
                                     class="mt-3 block text-center text-[.8rem] font-medium text-gray-500 underline hover:no-underline focus:outline-none">
                                     Cencel Booking
                                 </a>

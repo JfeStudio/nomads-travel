@@ -10,7 +10,7 @@
                     We've sent you email for trip instructions <br />
                     please read it as well
                 </p>
-                <a href="{{ route('pages.index') }}"
+                <a href="{{ route('home') }}"
                     class="mt-8 inline-flex items-center justify-center rounded-md bg-blue-500 px-5 py-2 text-center text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300">
                     Back to Homepage
                     <svg aria-hidden="true" class="ml-2 -mr-1 h-[0.9rem] w-[0.9rem]" fill="currentColor" viewBox="0 0 20 20"

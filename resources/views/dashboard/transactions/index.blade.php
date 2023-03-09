@@ -71,10 +71,10 @@
                                                     {{ $item->user->name }}
                                                 </td>
                                                 <td>
-                                                    {{ $item->additional_visa }}
+                                                    ${{ $item->additional_visa }}
                                                 </td>
                                                 <td>
-                                                    {{ $item->transaction_total }}
+                                                    ${{ $item->transaction_total }},00
                                                 </td>
                                                 <td>
                                                     <div

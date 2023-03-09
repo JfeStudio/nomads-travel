@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use App\Models\TravelPackage;
 use Carbon\Carbon;
 use Illuminate\Http\Request;

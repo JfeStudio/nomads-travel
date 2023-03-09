@@ -35,6 +35,13 @@ class TransactionSeeder extends Seeder
                 "transaction_total" => 3000000,
                 "transaction_status" => "PENDING",
             ],
+            [
+                "travel_packages_id" => 4,
+                "users_id" => 2,
+                "additional_visa" => 1100,
+                "transaction_total" => 30000,
+                "transaction_status" => "PENDING",
+            ],
         ];
         foreach ($transaction as $value) {
             Transaction::create($value);
