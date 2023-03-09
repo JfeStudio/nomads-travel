@@ -5,6 +5,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PaperController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\TravelPackageController;
 use App\Http\Middleware\EnsureTokenIsValid;
@@ -35,7 +37,11 @@ Route::middleware(["auth", EnsureTokenIsValid::class])->group(function () {
 });
 
 Route::middleware("auth")->group(function () {
-    Route::get("/checkout/{checkout}", [
+    Route::get("/report", [PaperController::class, "index"])->name("report");
+    Route::get("/report/{report}", [PaperController::class, "show"])->name(
+        "report-show"
+    );
+    Route::get("/checkout/{report}", [
         CheckoutController::class,
         "index",
     ])->name("checkout");

@@ -57,6 +57,9 @@
                                 type="button" id="dropdownMenuButton1" data-te-dropdown-toggle-ref aria-expanded="false"
                                 data-te-ripple-init data-te-ripple-color="light">
                                 {{ Auth::user()->name }}
+                                {{-- @foreach ($home as $item)
+                                    {{ $item }}
+                                @endforeach --}}
                                 <span class="ml-2 w-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                                         class="h-5 w-5">
@@ -70,7 +73,7 @@
                                 aria-labelledby="dropdownMenuButton1" data-te-dropdown-menu-ref>
                                 <li>
                                     <a class="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
-                                        href="#" data-te-dropdown-item-ref>Report</a>
+                                        href="{{ route('report') }}" data-te-dropdown-item-ref>Report</a>
                                 </li>
                                 <li>
                                     <a class="block w-full whitespace-nowrap bg-transparent py-2 px-4 text-sm font-normal text-neutral-700 hover:bg-neutral-100 active:text-neutral-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-neutral-400"
