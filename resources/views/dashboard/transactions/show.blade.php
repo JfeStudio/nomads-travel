@@ -52,6 +52,7 @@
                                             <th>Additional Visa</th>
                                             <th>Total Transaction</th>
                                             <th>Status Transaction</th>
+                                            <th>Update Payment</th>
                                         </tr>
                                         <?php $i = 1; ?>
                                         <tr>
@@ -62,13 +63,22 @@
                                                 {{ $transaction->user->name }}
                                             </td>
                                             <td>
-                                                {{ $transaction->additional_visa }}
+                                                ${{ $transaction->additional_visa }}
                                             </td>
                                             <td>
-                                                {{ $transaction->transaction_total }}
+                                                ${{ $transaction->transaction_total }},00
                                             </td>
                                             <td>
-                                                {{ $transaction->transaction_status }}
+                                                <div
+                                                    class="{{ $transaction->transaction_status == 'SUCCESS' ? 'badge-success' : '' }}
+                                                        {{ $transaction->transaction_status == 'IN_CART' ? 'badge-info' : '' }}
+                                                        {{ ($transaction->transaction_status == 'CANCEL' ? 'badge-danger' : '' || $transaction->transaction_status == 'FAILED') ? 'badge-danger' : '' }}
+                                                         badge badge-pill badge-warning">
+                                                    {{ $transaction->transaction_status }}
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {{ $transaction->updated_at->format('Y/m/d H:i:s') }}
                                             </td>
                                         </tr>
                                     </table>

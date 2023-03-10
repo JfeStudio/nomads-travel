@@ -73,7 +73,10 @@
                                                     </div>
                                                 </td>
                                                 <td>{{ $item->location }}</td>
-                                                <td>{!! $item->about !!}</td>
+                                                <td>
+                                                    <div style='height: 60px; overflow-y: hidden'>{!! $item->about !!}
+                                                    </div>
+                                                </td>
                                                 <td>{{ $item->departure_date }}</td>
                                                 <td>{{ $item->type }}</td>
                                                 <td>{{ $item->price }}</td>
