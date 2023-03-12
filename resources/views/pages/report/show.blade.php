@@ -54,7 +54,7 @@
                                     </td>
                                     <td class="px-6 py-4">
                                         <div
-                                            class='@if ($report->transaction_status == 'SUCCESS') bg-green-100 text-green-800 @endif bg-yellow-100 inline-block text-yellow-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'>
+                                            class='{{ $report->transaction_status == 'SUCCESS' ? 'bg-green-100 text-green-800' : ($report->transaction_status == 'PENDING' ? 'bg-yellow-100 text-yellow-800' : ($report->transaction_status == 'FAILED' || 'CANCEL' ? 'bg-red-100 text-red-800' : '')) }}  inline-block text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full'>
                                             {{ $report->transaction_status }}
                                         </div>
                                     </td>

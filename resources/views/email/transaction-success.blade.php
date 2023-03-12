@@ -214,7 +214,7 @@
                                                                         <tr>
                                                                             <td style="width:550px;">
                                                                                 <img alt="Nomads Logo" height="auto"
-                                                                                    src="{{ asset('frontend/assets/images/details-1@2x.jpg') }}"
+                                                                                    src="{{ url('storage/' . $transaction->travel_package->galleries->first()->image) }}"
                                                                                     style="border:none;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;"
                                                                                     width="550" />
                                                                             </td>
@@ -260,10 +260,11 @@
                                                                 style="font-size:0px;padding:10px 25px;padding-top:10px;padding-bottom:25px;word-break:break-word;">
                                                                 <div
                                                                     style="font-family:Asistant, Helvetica, Arial, sans-serif;font-size:15px;font-weight:semibold;line-height:18px;text-align:left;color:#000000;">
-                                                                    <strong>Hi, Kim Maman</strong>
+                                                                    <strong>Hi, {{ $transaction->user->name }}</strong>
                                                                     <br />
                                                                     <br /> Tiket digital kamu sudah berhasil dicetak.
-                                                                    <br /> Booking ID : <strong>5</strong>
+                                                                    <br /> Booking ID :
+                                                                    <strong>{{ $transaction->id }}</strong>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -278,16 +279,15 @@
                                                                         <td style="font-weight: semibold; font-size: 15px"
                                                                             colspan="3"> Members : </td>
                                                                     </tr>
-                                                                    <tr>
-                                                                        <td><strong>Maman</strong></td>
-                                                                        <td style="text-align: right">Indonesia, ID
-                                                                        </td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td><strong>Boa</strong></td>
-                                                                        <td style="text-align: right">Singapore, SG
-                                                                        </td>
-                                                                    </tr>
+                                                                    @foreach ($transaction->details as $item)
+                                                                        <tr>
+                                                                            <td><strong>{{ $item->name }}</strong>
+                                                                            </td>
+                                                                            <td style="text-align: right">
+                                                                                {{ $item->nationality }}
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
                                                                 </table>
                                                             </td>
                                                         </tr>
@@ -303,11 +303,14 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td><strong>Departure</strong></td>
-                                                                        <td style="text-align: right">Nusa Penida</td>
+                                                                        <td style="text-align: right">
+                                                                            {{ $transaction->travel_package->title }}
+                                                                        </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td><strong>Date N Time</strong></td>
-                                                                        <td style="text-align: right">Thu, 20 Jan, 2019
+                                                                        <td style="text-align: right">
+                                                                            {{ $transaction->travel_package->departure_date }}
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -325,7 +328,7 @@
                                                                                 role="presentation"
                                                                                 style="border:none;border-radius:5px;cursor:auto;mso-padding-alt:10px 25px;background:#f9a826;"
                                                                                 valign="middle">
-                                                                                <a href="https://www.nomads.id/"
+                                                                                <a href="{{ route('checkout', $transaction->id) }} }}"
                                                                                     style="display:inline-block;background:#f9a826;color:#ffffff;font-family:Asistant, Helvetica, Arial, sans-serif;font-size:14px;font-weight:bold;line-height:120%;margin:0;text-decoration:none;text-transform:none;padding:10px 25px;mso-padding-alt:0px;border-radius:5px;"
                                                                                     target="_blank"> Check Details </a>
                                                                             </td>

@@ -8,7 +8,11 @@ use App\Models\TransactionDetail;
 use App\Models\TravelPackage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Nette\Utils\Json;
+use Spatie\LaravelIgnition\Recorders\DumpRecorder\Dump;
 use Termwind\Components\Dd;
+
+use function PHPUnit\Framework\isJson;
 
 class CheckoutController extends Controller
 {
@@ -114,6 +118,7 @@ class CheckoutController extends Controller
         ])->findOrFail($checkout);
         $transaction->transaction_status = "PENDING";
         $transaction->save();
+        // return $transaction;
         // send email to user
         Mail::to($transaction->user)->send(
             new TransactionSuccess($transaction)
